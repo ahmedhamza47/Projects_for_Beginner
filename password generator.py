@@ -1,37 +1,38 @@
 import random as rd
-a = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','w','x','y','z']
-n = ['0','1','2','3','4','5','6','7','8','9']
-sym = ['!','@','$','%','^','&','*','(',')','<','/','-',',','+']
+import secrets
+import string
 
 num = int(input('How many numbers would you like in your password:'))
 alp = int(input('How many alphabets would you like:'))
 sm = int(input('How many symbols would you like:'))
-choice =int(input('How many choices would you like:'))
+choice = int(input('How many choices would you like:'))
 pswd =[]
-x = ''
-y = ''
-z = ''
+
 print('The suitable choices for your passwords are:\n')
 for i in range(choice):
     x = ''
     y = ''
     z = ''
     u = ''
-    for l in range(num):
-       x = x + rd.choice(n)
+    for j in range(num):
+        x = x + secrets.choice(string.ascii_lowercase)
 
-    for j in range(alp):
-        y = y + rd.choice(a)
+    for k in range(alp):
+        y = y + secrets.choice(string.digits)
 
-    for k in range(sm):
-        z = z + rd.choice(sym)
+    for m in range(sm):
+        z = z + secrets.choice(string.punctuation)
 
-    u = x + y + z
-    pswd.append(u)
+    password = x + y + z
+    pass_list = list(password)
+    rd.shuffle(pass_list)
+    password = ''.join(pass_list)
+    pswd.append(password)
 
 
-for i in pswd:
-    j = rd.shuffle(i)
+for j in pswd:
     print(j)
+
+
 
 
